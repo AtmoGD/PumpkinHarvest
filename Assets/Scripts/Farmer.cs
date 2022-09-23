@@ -5,6 +5,7 @@ using UnityEngine;
 public class Farmer : Controllable
 {
     // Rigidbody rb;
+    Animator animator;
     CharacterController characterController;
 
     private Vector3 targetVelocity;
@@ -12,6 +13,7 @@ public class Farmer : Controllable
     private void Start()
     {
         // rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
     }
 
@@ -32,11 +34,13 @@ public class Farmer : Controllable
         else
             velocity = Vector3.Lerp(velocity, Vector3.zero, decceleration * Time.deltaTime);
 
-        // velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
+        if (!characterController.isGrounded)
+            velocity.y -= gravity * Time.fixedDeltaTime;
+
+        animator.SetFloat("Speed", velocity.magnitude);
+        animator.SetFloat("Vertical", velocity.y);
 
         print("Update :" + velocity);
-
-        velocity.y -= gravity * Time.fixedDeltaTime;
     }
 
     private void Move()
@@ -44,6 +48,10 @@ public class Farmer : Controllable
         // rb.MovePosition(rb.position + velocity * Time.deltaTime);
         // rb.velocity = velocity;
         characterController.Move(velocity * maxSpeed * Time.deltaTime);
+
+        //Rotate in Movement Direction
+        if (velocity.magnitude > 0)
+            transform.rotation = Quaternion.LookRotation(new Vector3(velocity.x, 0f, velocity.z));
 
         // print(rb.velocity);
         // Vector3 newPosition = transform.position + velocity;
