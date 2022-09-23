@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        farmer.InitPlayerController(this);
+        truck.InitPlayerController(this);
+
         currentControllable = farmer;
     }
 
@@ -19,5 +22,17 @@ public class PlayerController : MonoBehaviour
     {
         if (currentControllable)
             currentControllable.OnMove(_context.ReadValue<Vector2>());
+    }
+
+    public void OnBaseInteract(InputAction.CallbackContext _context)
+    {
+        if (currentControllable)
+            currentControllable.OnBaseInteract();
+    }
+
+    public void OnSpecialInteract(InputAction.CallbackContext _context)
+    {
+        if (currentControllable)
+            currentControllable.OnSpecialInteract();
     }
 }

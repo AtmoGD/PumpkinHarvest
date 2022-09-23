@@ -4,22 +4,18 @@ using UnityEngine;
 
 public class Farmer : Controllable
 {
-    // Rigidbody rb;
-    Animator animator;
     CharacterController characterController;
 
-    private Vector3 targetVelocity;
-
-    private void Start()
+    protected override void Start()
     {
-        // rb = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
+        base.Start();
         characterController = GetComponent<CharacterController>();
     }
 
     private void Update()
     {
         UpdateVelocity();
+        Rotate();
     }
 
     private void FixedUpdate()
@@ -27,7 +23,7 @@ public class Farmer : Controllable
         Move();
     }
 
-    private void UpdateVelocity()
+    protected void UpdateVelocity()
     {
         if (targetVelocity.magnitude > 0)
             velocity = Vector3.Lerp(velocity, targetVelocity, acceleration * Time.deltaTime);
@@ -37,30 +33,17 @@ public class Farmer : Controllable
         if (!characterController.isGrounded)
             velocity.y -= gravity * Time.fixedDeltaTime;
 
-        animator.SetFloat("Speed", velocity.magnitude);
-        animator.SetFloat("Vertical", velocity.y);
-
-        print("Update :" + velocity);
+        animator.SetFloat("Speed", new Vector2(velocity.x, velocity.z).magnitude);
     }
 
-    private void Move()
+    private void Rotate()
     {
-        // rb.MovePosition(rb.position + velocity * Time.deltaTime);
-        // rb.velocity = velocity;
-        characterController.Move(velocity * maxSpeed * Time.deltaTime);
-
-        //Rotate in Movement Direction
-        if (velocity.magnitude > 0)
+        if (Mathf.Abs(velocity.x) > 0f || Mathf.Abs(velocity.z) > 0f)
             transform.rotation = Quaternion.LookRotation(new Vector3(velocity.x, 0f, velocity.z));
-
-        // print(rb.velocity);
-        // Vector3 newPosition = transform.position + velocity;
-
-        // rb.MovePosition(newPosition);
     }
 
-    public override void OnMove(Vector2 movementVector)
+    public void Move()
     {
-        this.targetVelocity = new Vector3(movementVector.x, 0, movementVector.y);
+        characterController.Move(velocity * maxSpeed * Time.deltaTime);
     }
 }
