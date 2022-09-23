@@ -163,11 +163,11 @@ public class Farmer : Controllable
         if (money >= amount)
         {
             money -= amount;
+
+            UpdateMoneyText();
+
             return true;
         }
-
-        UpdateMoneyText();
-
         return false;
     }
 
