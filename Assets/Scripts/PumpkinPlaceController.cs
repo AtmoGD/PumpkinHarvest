@@ -46,6 +46,10 @@ public class PumpkinPlaceController : MonoBehaviour, IInteractable
                 if (currentGrow >= waterNeededToGrow)
                     state = PumpkinState.Ready;
             }
+            else
+            {
+                currentWaterFill = 0;
+            }
         }
 
         print(state);
@@ -78,20 +82,23 @@ public class PumpkinPlaceController : MonoBehaviour, IInteractable
         HideAllTooltips();
     }
 
-    public void ShowBaseInteractTooltip(bool show)
+    public void ShowBaseInteractTooltip(Farmer farmer, bool show)
     {
         if (show)
         {
             switch (state)
             {
                 case PumpkinState.Empty:
-                    seedTooltip.ShowTooltip();
+                    if (farmer.CurrentItem == PickUpType.None)
+                        seedTooltip.ShowTooltip();
                     break;
                 case PumpkinState.Growing:
-                    waterTooltip.ShowTooltip();
+                    if (currentWaterFill <= 0f && farmer.CurrentItem == PickUpType.None)
+                        waterTooltip.ShowTooltip();
                     break;
                 case PumpkinState.Ready:
-                    harvestTooltip.ShowTooltip();
+                    if (farmer.CurrentItem == PickUpType.None)
+                        harvestTooltip.ShowTooltip();
                     break;
             }
         }
@@ -113,7 +120,7 @@ public class PumpkinPlaceController : MonoBehaviour, IInteractable
 
     }
 
-    public void ShowSpecialInteractTooltip(bool show)
+    public void ShowSpecialInteractTooltip(Farmer farmer, bool show)
     {
 
     }
@@ -128,7 +135,7 @@ public class PumpkinPlaceController : MonoBehaviour, IInteractable
 
     public void StartWatering(Farmer farmer)
     {
-        if (farmer.CurrentItem == PickUpType.None)
+        if (currentWaterFill <= 0f && farmer.CurrentItem == PickUpType.None)
         {
             currentWaterFill = maxWaterFill;
         }

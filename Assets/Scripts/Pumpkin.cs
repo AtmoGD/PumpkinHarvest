@@ -13,9 +13,9 @@ public class Pumpkin : MonoBehaviour, IInteractable
         }
     }
 
-    public void ShowBaseInteractTooltip(bool show)
+    public void ShowBaseInteractTooltip(Farmer farmer, bool show)
     {
-        throw new System.NotImplementedException();
+        // throw new System.NotImplementedException();
     }
 
     public void SpecialInteract(Farmer farmer)
@@ -23,8 +23,8 @@ public class Pumpkin : MonoBehaviour, IInteractable
         print("SpecialInteract on Pumpkin");
     }
 
-    public void ShowSpecialInteractTooltip(bool show)
+    public void ShowSpecialInteractTooltip(Farmer farmer, bool show)
     {
-        throw new System.NotImplementedException();
+        // throw new System.NotImplementedException();
     }
 }

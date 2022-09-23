@@ -94,14 +94,14 @@ public class Farmer : Controllable
             IInteractable interactable = hit.collider.GetComponent<IInteractable>();
             if (interactable != null)
             {
-                interactableInReach?.ShowBaseInteractTooltip(false);
+                interactableInReach?.ShowBaseInteractTooltip(this, false);
                 interactableInReach = interactable;
-                interactableInReach.ShowBaseInteractTooltip(true);
+                interactableInReach.ShowBaseInteractTooltip(this, true);
                 return;
             }
         }
 
-        interactableInReach?.ShowBaseInteractTooltip(false);
+        interactableInReach?.ShowBaseInteractTooltip(this, false);
         interactableInReach = null;
     }
 
