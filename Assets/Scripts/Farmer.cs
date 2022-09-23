@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public enum PickUpType
 {
@@ -23,6 +24,7 @@ public class Farmer : Controllable
 {
     CharacterController characterController;
     [SerializeField] int money = 0;
+    [SerializeField] TMP_Text moneyText;
     [SerializeField] private Transform interactPoint;
     [SerializeField] private float interactRadius = 1f;
     [SerializeField] private GameObject pumpkin;
@@ -34,6 +36,7 @@ public class Farmer : Controllable
     protected override void Start()
     {
         base.Start();
+        UpdateMoneyText();
         characterController = GetComponent<CharacterController>();
     }
 
@@ -151,6 +154,26 @@ public class Farmer : Controllable
     public void AddMoney(int amount)
     {
         money += amount;
+
+        UpdateMoneyText();
+    }
+
+    public bool RemoveMoney(int amount)
+    {
+        if (money >= amount)
+        {
+            money -= amount;
+            return true;
+        }
+
+        UpdateMoneyText();
+
+        return false;
+    }
+
+    private void UpdateMoneyText()
+    {
+        moneyText.text = money.ToString();
     }
 
     public void ResetPumpkin()
