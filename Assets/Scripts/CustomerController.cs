@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CustomerController : MonoBehaviour, IInteractable
 {
     [SerializeField] private List<Material> customerMaterials = new List<Material>();
     [SerializeField] private List<SkinnedMeshRenderer> customerModel = new List<SkinnedMeshRenderer>();
+    [SerializeField] private TooltipController tooltipController;
+    [SerializeField] private TMP_Text pumpkinsLeftText;
     [SerializeField] private Animator animator;
     [SerializeField] private bool isActive;
     [SerializeField] private int amountOfPumpkins;
@@ -17,49 +20,57 @@ public class CustomerController : MonoBehaviour, IInteractable
     {
         amountPumpkinsLeft = amountOfPumpkins;
         UpdateCustomerMaterial();
+
+        if (isActive)
+            BecomeActive();
+    }
+
+    public void BecomeActive()
+    {
+        isActive = true;
+        animator.SetBool("Active", true);
+        UpdatePumpkinsLeftText();
+        tooltipController.ShowTooltip();
+    }
+
+    public void BecomeInactive()
+    {
+        isActive = false;
+        animator.SetBool("Active", false);
+        tooltipController.HideTooltip();
     }
 
     public void BaseInteract(Farmer farmer)
     {
-        print("BaseInteract on Customer");
         if (isActive && farmer.CurrentItem == PickUpType.Pumpkin)
         {
-            farmer.DeliverPumpkin();
-            amountPumpkinsLeft--;
+            TakePumpkin(farmer);
+
             if (amountPumpkinsLeft <= 0)
             {
                 farmer.AddMoney(moneyReward);
-                animator.SetTrigger("Leave");
-                isActive = false;
-                print("Customer left");
+                BecomeInactive();
             }
         }
     }
 
+    public void TakePumpkin(Farmer farmer)
+    {
+        farmer.DeliverPumpkin();
+        amountPumpkinsLeft--;
+        UpdatePumpkinsLeftText();
+    }
+
     public void ShowBaseInteractTooltip(Farmer farmer, bool show)
     {
-        print("ShowBaseInteractTooltip on Customer");
-        // if (isActive && farmer.CurrentItem == PickUpType.Pumpkin)
-        // {
-        //     if (show)
-        //     {
-        //         TooltipController.Instance.ShowTooltip("Deliver pumpkin");
-        //     }
-        //     else
-        //     {
-        //         TooltipController.Instance.HideTooltip();
-        //     }
-        // }
     }
 
     public void SpecialInteract(Farmer farmer)
     {
-        // throw new System.NotImplementedException();
     }
 
     public void ShowSpecialInteractTooltip(Farmer farmer, bool show)
     {
-        // throw new System.NotImplementedException();
     }
 
     public void UpdateCustomerMaterial()
@@ -69,5 +80,10 @@ public class CustomerController : MonoBehaviour, IInteractable
         {
             meshRenderer.material = newMaterial;
         }
+    }
+
+    public void UpdatePumpkinsLeftText()
+    {
+        pumpkinsLeftText.text = amountPumpkinsLeft.ToString();
     }
 }

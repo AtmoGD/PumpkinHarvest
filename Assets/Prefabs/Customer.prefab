@@ -808,7 +808,7 @@ Animator:
   m_GameObject: {fileID: 2081220158917736350}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: df38d25b6fd39b44eacfb4a2b784547c, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 364c84b23d2b994469804c65780f4913, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -875,6 +875,8 @@ MonoBehaviour:
   - {fileID: 2081220158914624136}
   - {fileID: 2081220158914624134}
   - {fileID: 2081220158914624132}
+  tooltipController: {fileID: 3166262194168293736}
+  pumpkinsLeftText: {fileID: 7347218410483558478}
   animator: {fileID: 2081220158910432334}
   isActive: 1
   amountOfPumpkins: 1
@@ -1381,6 +1383,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2c54ebac6ff80b45b26ec59c24a7063, type: 3}
+--- !u!114 &3166262194168293736 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6488611494820581918, guid: b2c54ebac6ff80b45b26ec59c24a7063,
+    type: 3}
+  m_PrefabInstance: {fileID: 8213720704423197558}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a6757786f0b8884eadcd3380da74594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7347218410483558478 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1444088959574430520, guid: b2c54ebac6ff80b45b26ec59c24a7063,
+    type: 3}
+  m_PrefabInstance: {fileID: 8213720704423197558}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8491183395593171567 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 300124038350293273, guid: b2c54ebac6ff80b45b26ec59c24a7063,

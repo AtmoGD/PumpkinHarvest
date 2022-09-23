@@ -64,8 +64,6 @@ public class PumpkinPlaceController : MonoBehaviour, IInteractable
 
     public void BaseInteract(Farmer farmer)
     {
-        print("BaseInteract on Pumpkin");
-
         switch (state)
         {
             case PumpkinState.Empty:
