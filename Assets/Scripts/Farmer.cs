@@ -6,6 +6,11 @@ public class Farmer : Controllable
 {
     CharacterController characterController;
 
+    [SerializeField] private Transform interactPoint;
+    [SerializeField] private float interactRadius = 1f;
+
+    private IInteractable interactableInReach;
+
     protected override void Start()
     {
         base.Start();
@@ -14,6 +19,7 @@ public class Farmer : Controllable
 
     private void Update()
     {
+        UpdateInteractableInReach();
         UpdateVelocity();
         Rotate();
     }
@@ -31,7 +37,7 @@ public class Farmer : Controllable
             velocity = Vector3.Lerp(velocity, Vector3.zero, decceleration * Time.deltaTime);
 
         if (!characterController.isGrounded)
-            velocity.y -= gravity * Time.fixedDeltaTime;
+            velocity.y -= gravity * Time.deltaTime;
 
         animator.SetFloat("Speed", new Vector2(velocity.x, velocity.z).magnitude);
     }
@@ -45,5 +51,33 @@ public class Farmer : Controllable
     public void Move()
     {
         characterController.Move(velocity * maxSpeed * Time.deltaTime);
+    }
+
+    public override void OnBaseInteract()
+    {
+        interactableInReach?.BaseInteract();
+    }
+
+    public void UpdateInteractableInReach()
+    {
+        RaycastHit[] hits = Physics.SphereCastAll(interactPoint.position, interactRadius, Vector3.up, 0f);
+
+        foreach (RaycastHit hit in hits)
+        {
+            IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+            if (interactable != null)
+            {
+                interactableInReach = interactable;
+                return;
+            }
+        }
+
+        interactableInReach = null;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(interactPoint.position, interactRadius);
     }
 }
