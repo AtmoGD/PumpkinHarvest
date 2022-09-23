@@ -44,7 +44,7 @@ public class Farmer : Controllable
 
     private void Rotate()
     {
-        if (Mathf.Abs(velocity.x) > 0f || Mathf.Abs(velocity.z) > 0f)
+        if (Mathf.Abs(velocity.x) > 0.1f || Mathf.Abs(velocity.z) > 0.1f)
             transform.rotation = Quaternion.LookRotation(new Vector3(velocity.x, 0f, velocity.z));
     }
 
