@@ -83,15 +83,6 @@ public class Farmer : Controllable
         {
             DropItem();
         }
-
-        // if (currentItem == PickUpType.None || interactableInReach != null)
-        // {
-        //     interactableInReach?.BaseInteract(this);
-        // }
-        // else
-        // {
-        //     DropItem();
-        // }
     }
 
     public void UpdateInteractableInReach()
@@ -106,7 +97,6 @@ public class Farmer : Controllable
                 interactableInReach?.ShowBaseInteractTooltip(this, false);
                 interactableInReach = interactable;
                 interactableInReach.ShowBaseInteractTooltip(this, true);
-                print("Interactable in reach: " + interactableInReach);
                 return;
             }
         }
