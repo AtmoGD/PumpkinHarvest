@@ -22,7 +22,7 @@ public enum FarmerState
 public class Farmer : Controllable
 {
     CharacterController characterController;
-
+    [SerializeField] int money = 0;
     [SerializeField] private Transform interactPoint;
     [SerializeField] private float interactRadius = 1f;
     [SerializeField] private GameObject pumpkin;
@@ -75,14 +75,23 @@ public class Farmer : Controllable
 
     public override void OnBaseInteract()
     {
-        if (currentItem == PickUpType.None || interactableInReach != null)
+        if (interactableInReach != null)
         {
-            interactableInReach?.BaseInteract(this);
+            interactableInReach.BaseInteract(this);
         }
-        else
+        else if (currentItem != PickUpType.None)
         {
             DropItem();
         }
+
+        // if (currentItem == PickUpType.None || interactableInReach != null)
+        // {
+        //     interactableInReach?.BaseInteract(this);
+        // }
+        // else
+        // {
+        //     DropItem();
+        // }
     }
 
     public void UpdateInteractableInReach()
@@ -97,6 +106,7 @@ public class Farmer : Controllable
                 interactableInReach?.ShowBaseInteractTooltip(this, false);
                 interactableInReach = interactable;
                 interactableInReach.ShowBaseInteractTooltip(this, true);
+                print("Interactable in reach: " + interactableInReach);
                 return;
             }
         }
@@ -132,9 +142,7 @@ public class Farmer : Controllable
             switch (currentItem)
             {
                 case PickUpType.Pumpkin:
-                    currentItem = PickUpType.None;
-                    animator.SetBool("HasItem", false);
-                    pumpkin.SetActive(false);
+                    ResetPumpkin();
                     Instantiate(pumpkinPrefab, pumpkin.transform.position, Quaternion.identity);
                     break;
             }
@@ -143,6 +151,23 @@ public class Farmer : Controllable
         }
 
         return false;
+    }
+
+    public void DeliverPumpkin()
+    {
+        ResetPumpkin();
+    }
+
+    public void AddMoney(int amount)
+    {
+        money += amount;
+    }
+
+    public void ResetPumpkin()
+    {
+        currentItem = PickUpType.None;
+        animator.SetBool("HasItem", false);
+        pumpkin.SetActive(false);
     }
 
     private void OnDrawGizmos()

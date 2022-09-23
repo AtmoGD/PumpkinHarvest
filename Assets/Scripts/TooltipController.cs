@@ -14,12 +14,10 @@ public class TooltipController : MonoBehaviour
     public void ShowTooltip()
     {
         animator.SetBool("Active", true);
-        print("ShowTooltip");
     }
 
     public void HideTooltip()
     {
         animator.SetBool("Active", false);
-        print("HideTooltip");
     }
 }
