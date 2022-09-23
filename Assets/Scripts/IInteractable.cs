@@ -4,6 +4,8 @@ using UnityEngine;
 
 public interface IInteractable
 {
-    public void BaseInteract();
-    public void SpecialInteract();
+    public void BaseInteract(Farmer farmer);
+    public void ShowBaseInteractTooltip(bool show);
+    public void SpecialInteract(Farmer farmer);
+    public void ShowSpecialInteractTooltip(bool show);
 }

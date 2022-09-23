@@ -18,21 +18,21 @@ public class PlayerController : MonoBehaviour
         currentControllable = farmer;
     }
 
-    public void OnMove(InputAction.CallbackContext _context)
+    public void OnMove(InputAction.CallbackContext context)
     {
         if (currentControllable)
-            currentControllable.OnMove(_context.ReadValue<Vector2>());
+            currentControllable.OnMove(context.ReadValue<Vector2>());
     }
 
-    public void OnBaseInteract(InputAction.CallbackContext _context)
+    public void OnBaseInteract(InputAction.CallbackContext context)
     {
-        if (currentControllable)
+        if (context.started && currentControllable)
             currentControllable.OnBaseInteract();
     }
 
-    public void OnSpecialInteract(InputAction.CallbackContext _context)
+    public void OnSpecialInteract(InputAction.CallbackContext context)
     {
-        if (currentControllable)
+        if (context.started && currentControllable)
             currentControllable.OnSpecialInteract();
     }
 }

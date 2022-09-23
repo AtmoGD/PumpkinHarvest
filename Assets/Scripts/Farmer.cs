@@ -2,13 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PickUpType
+{
+    None,
+    Water,
+    Seed,
+    Pumpkin
+}
+
+public enum FarmerState
+{
+    Idle,
+    Walking,
+    Seeding,
+    Watering,
+    Harvesting
+}
+
 public class Farmer : Controllable
 {
     CharacterController characterController;
 
     [SerializeField] private Transform interactPoint;
     [SerializeField] private float interactRadius = 1f;
-
+    [SerializeField] private GameObject pumpkin;
+    [SerializeField] private GameObject pumpkinPrefab;
+    private PickUpType currentItem = PickUpType.None;
+    public PickUpType CurrentItem { get { return currentItem; } }
     private IInteractable interactableInReach;
 
     protected override void Start()
@@ -55,7 +75,14 @@ public class Farmer : Controllable
 
     public override void OnBaseInteract()
     {
-        interactableInReach?.BaseInteract();
+        if (currentItem == PickUpType.None || interactableInReach != null)
+        {
+            interactableInReach?.BaseInteract(this);
+        }
+        else
+        {
+            DropItem();
+        }
     }
 
     public void UpdateInteractableInReach()
@@ -67,12 +94,55 @@ public class Farmer : Controllable
             IInteractable interactable = hit.collider.GetComponent<IInteractable>();
             if (interactable != null)
             {
+                interactableInReach?.ShowBaseInteractTooltip(false);
                 interactableInReach = interactable;
+                interactableInReach.ShowBaseInteractTooltip(true);
                 return;
             }
         }
 
+        interactableInReach?.ShowBaseInteractTooltip(false);
         interactableInReach = null;
+    }
+
+    public bool PickUpItem(PickUpType _item)
+    {
+        if (CurrentItem == PickUpType.None)
+        {
+            currentItem = _item;
+            animator.SetBool("HasItem", true);
+
+            switch (currentItem)
+            {
+                case PickUpType.Pumpkin:
+                    pumpkin.SetActive(true);
+                    break;
+            }
+
+            return true;
+        }
+
+        return false; ;
+    }
+
+    public bool DropItem()
+    {
+        if (CurrentItem != PickUpType.None)
+        {
+            switch (currentItem)
+            {
+                case PickUpType.Pumpkin:
+                    currentItem = PickUpType.None;
+                    animator.SetBool("HasItem", false);
+                    pumpkin.SetActive(false);
+                    Instantiate(pumpkinPrefab, pumpkin.transform.position, Quaternion.identity);
+                    break;
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     private void OnDrawGizmos()
