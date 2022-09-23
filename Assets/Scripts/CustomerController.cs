@@ -9,8 +9,10 @@ public class CustomerController : MonoBehaviour, IInteractable
     [SerializeField] private List<SkinnedMeshRenderer> customerModel = new List<SkinnedMeshRenderer>();
     [SerializeField] private TooltipController tooltipController;
     [SerializeField] private TMP_Text pumpkinsLeftText;
+    [SerializeField] private TMP_Text moneyRewardText;
     [SerializeField] private Animator animator;
     [SerializeField] private bool isActive;
+    public bool IsActive { get { return isActive; } }
     [SerializeField] private int amountOfPumpkins;
     [SerializeField] private int moneyReward;
 
@@ -18,18 +20,20 @@ public class CustomerController : MonoBehaviour, IInteractable
 
     private void Start()
     {
+        GameController.instance.InitCustomer(this);
         amountPumpkinsLeft = amountOfPumpkins;
         UpdateCustomerMaterial();
-
-        if (isActive)
-            BecomeActive();
     }
 
-    public void BecomeActive()
+    public void BecomeActive(int pumpkinAmount, int reward)
     {
+        amountOfPumpkins = pumpkinAmount;
+        amountPumpkinsLeft = amountOfPumpkins;
+        moneyReward = reward;
         isActive = true;
         animator.SetBool("Active", true);
         UpdatePumpkinsLeftText();
+        UpdateMoneyRewardText();
         tooltipController.ShowTooltip();
     }
 
@@ -85,5 +89,10 @@ public class CustomerController : MonoBehaviour, IInteractable
     public void UpdatePumpkinsLeftText()
     {
         pumpkinsLeftText.text = amountPumpkinsLeft.ToString();
+    }
+
+    public void UpdateMoneyRewardText()
+    {
+        moneyRewardText.text = moneyReward.ToString();
     }
 }
