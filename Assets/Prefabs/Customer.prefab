@@ -863,11 +863,8 @@ MonoBehaviour:
   customerMaterials:
   - {fileID: 2100000, guid: cfca275426dce754aaeb7d89544cd7ae, type: 2}
   - {fileID: 2100000, guid: b0e47c82acf5c6844b52ebd74f075ae0, type: 2}
-  - {fileID: 2100000, guid: c8f007ec1b937fb4d9a0ef753dbe8f97, type: 2}
   - {fileID: 2100000, guid: 67f2925d5abf95c43ae572b03be8eb24, type: 2}
   - {fileID: 2100000, guid: 96762f0005604c94bb01dd8f530b53fb, type: 2}
-  - {fileID: 2100000, guid: 599a57b974e2a374cb049383448d1635, type: 2}
-  - {fileID: 2100000, guid: b73e1e46d6b90f54ba3ba1faa9550585, type: 2}
   - {fileID: 2100000, guid: f972cac09446cf14abe36b7956dd8ecd, type: 2}
   customerModel:
   - {fileID: 2081220158914624142}
