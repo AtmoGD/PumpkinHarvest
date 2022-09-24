@@ -51,8 +51,6 @@ public class PumpkinPlaceController : MonoBehaviour, IInteractable
                 currentWaterFill = 0;
             }
         }
-
-        print(state);
     }
 
     public void UpdatePumpkinScale()

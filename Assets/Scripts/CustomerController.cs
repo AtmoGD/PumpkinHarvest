@@ -34,14 +34,14 @@ public class CustomerController : MonoBehaviour, IInteractable
         animator.SetBool("Active", true);
         UpdatePumpkinsLeftText();
         UpdateMoneyRewardText();
-        tooltipController.ShowTooltip();
+        // tooltipController.ShowTooltip();
     }
 
     public void BecomeInactive()
     {
         isActive = false;
         animator.SetBool("Active", false);
-        tooltipController.HideTooltip();
+        // tooltipController.HideTooltip();
     }
 
     public void BaseInteract(Farmer farmer)
@@ -67,6 +67,14 @@ public class CustomerController : MonoBehaviour, IInteractable
 
     public void ShowBaseInteractTooltip(Farmer farmer, bool show)
     {
+        if (show)
+        {
+            tooltipController?.ShowTooltip();
+        }
+        else
+        {
+            tooltipController?.HideTooltip();
+        }
     }
 
     public void SpecialInteract(Farmer farmer)

@@ -22,7 +22,7 @@ public enum FarmerState
 
 public class Farmer : Controllable
 {
-    CharacterController characterController;
+
     [SerializeField] int money = 0;
     [SerializeField] TMP_Text moneyText;
     [SerializeField] private Transform interactPoint;
@@ -37,43 +37,13 @@ public class Farmer : Controllable
     {
         base.Start();
         UpdateMoneyText();
-        characterController = GetComponent<CharacterController>();
     }
 
-    private void Update()
+
+    protected new void Update()
     {
+        base.Update();
         UpdateInteractableInReach();
-        UpdateVelocity();
-        Rotate();
-    }
-
-    private void FixedUpdate()
-    {
-        Move();
-    }
-
-    protected void UpdateVelocity()
-    {
-        if (targetVelocity.magnitude > 0)
-            velocity = Vector3.Lerp(velocity, targetVelocity, acceleration * Time.deltaTime);
-        else
-            velocity = Vector3.Lerp(velocity, Vector3.zero, decceleration * Time.deltaTime);
-
-        if (!characterController.isGrounded)
-            velocity.y -= gravity * Time.deltaTime;
-
-        animator.SetFloat("Speed", new Vector2(velocity.x, velocity.z).magnitude);
-    }
-
-    private void Rotate()
-    {
-        if (Mathf.Abs(velocity.x) > 0.1f || Mathf.Abs(velocity.z) > 0.1f)
-            transform.rotation = Quaternion.LookRotation(new Vector3(velocity.x, 0f, velocity.z));
-    }
-
-    public void Move()
-    {
-        characterController.Move(velocity * maxSpeed * Time.deltaTime);
     }
 
     public override void OnBaseInteract()
@@ -97,7 +67,7 @@ public class Farmer : Controllable
             IInteractable interactable = hit.collider.GetComponent<IInteractable>();
             if (interactable != null)
             {
-                interactableInReach?.ShowBaseInteractTooltip(this, false);
+                ResetInteractableInReach();
                 interactableInReach = interactable;
                 interactableInReach.ShowBaseInteractTooltip(this, true);
                 return;
@@ -108,12 +78,18 @@ public class Farmer : Controllable
         interactableInReach = null;
     }
 
+    public void ResetInteractableInReach()
+    {
+        interactableInReach?.ShowBaseInteractTooltip(this, false);
+        interactableInReach = null;
+    }
+
     public bool PickUpItem(PickUpType _item)
     {
         if (CurrentItem == PickUpType.None)
         {
             currentItem = _item;
-            animator.SetBool("HasItem", true);
+            UpdateAnimator();
 
             switch (currentItem)
             {
@@ -126,6 +102,11 @@ public class Farmer : Controllable
         }
 
         return false; ;
+    }
+
+    public void UpdateAnimator()
+    {
+        animator.SetBool("HasItem", currentItem != PickUpType.None);
     }
 
     public bool DropItem()

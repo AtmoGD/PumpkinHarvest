@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private Controllable farmer;
     [SerializeField] private Controllable truck;
 
@@ -15,7 +17,14 @@ public class PlayerController : MonoBehaviour
         farmer.InitPlayerController(this);
         truck.InitPlayerController(this);
 
-        currentControllable = farmer;
+        SetCurrentControllable(farmer);
+    }
+
+    public void SetCurrentControllable(Controllable controllable)
+    {
+        currentControllable = controllable;
+        virtualCamera.Follow = currentControllable.transform;
+        virtualCamera.LookAt = currentControllable.transform;
     }
 
     public void OnMove(InputAction.CallbackContext context)

@@ -63,16 +63,10 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitForSeconds(gameLoopTime);
 
-        print("GameLoop");
-
         if (ActiveCustomerCount < maxCustomersActive)
         {
-            print("ActiveCustomerCount < maxCustomersActive");
-
             if (UnityEngine.Random.Range(0f, 1f) < chanceForNewCustomer)
             {
-                print("UnityEngine.Random.Range(0f, 1f) < chanceForNewCustomer");
-
                 StartRandomCustomer();
             }
         }

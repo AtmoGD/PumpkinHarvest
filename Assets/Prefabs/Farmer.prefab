@@ -51,11 +51,11 @@ CharacterController:
   serializedVersion: 2
   m_Height: 0.45
   m_Radius: 0.15
-  m_SlopeLimit: 45
+  m_SlopeLimit: 15
   m_StepOffset: 0.01
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.03
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.225, z: 0}
+  m_Center: {x: 0, y: 0.22, z: 0}
 --- !u!114 &744517280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,7 +75,7 @@ MonoBehaviour:
   money: 0
   moneyText: {fileID: 3736787999555568649}
   interactPoint: {fileID: 8753339976508142904}
-  interactRadius: 0.1
+  interactRadius: 0.15
   pumpkin: {fileID: 5771255695340160849}
   pumpkinPrefab: {fileID: 4840311938656509332, guid: 5a7e7b94630ce7f4e9db82b96d7e83bc,
     type: 3}
