@@ -1133,7 +1133,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.44721362, y: 0.000000015389857, z: -0.000000007694929, w: 0.89442724}
+  m_LocalRotation: {x: 0.44721362, y: 0.00000003318576, z: -0.00000001659288, w: 0.89442724}
   m_LocalPosition: {x: -1, y: 4.255, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3559,7 +3559,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1004418622}
-  m_LocalRotation: {x: 0.44721362, y: 0.000000015389857, z: -0.000000007694929, w: 0.89442724}
+  m_LocalRotation: {x: 0.44721362, y: 0.00000003318576, z: -0.00000001659288, w: 0.89442724}
   m_LocalPosition: {x: -1, y: 4.255, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5704,9 +5704,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BindingMode: 4
   m_FollowOffset: {x: 0, y: 4, z: -3}
-  m_XDamping: 2
-  m_YDamping: 2
-  m_ZDamping: 2
+  m_XDamping: 0
+  m_YDamping: 0
+  m_ZDamping: 0
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -5730,10 +5730,10 @@ MonoBehaviour:
   m_LookaheadIgnoreY: 0
   m_HorizontalDamping: 0.5
   m_VerticalDamping: 0.5
-  m_ScreenX: 0.5
+  m_ScreenX: 0.49999994
   m_ScreenY: 0.5
-  m_DeadZoneWidth: 0.5672504
-  m_DeadZoneHeight: 0.500815
+  m_DeadZoneWidth: 0.2047503
+  m_DeadZoneHeight: 0.22488901
   m_SoftZoneWidth: 0.8
   m_SoftZoneHeight: 0.8
   m_BiasX: 0
@@ -8096,6 +8096,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 744517280, guid: 797361468fb5fe04e83696a46f6309c8, type: 3}
+      propertyPath: money
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 1174863038927102568, guid: 797361468fb5fe04e83696a46f6309c8,
         type: 3}
       propertyPath: m_RootOrder
