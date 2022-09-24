@@ -12,6 +12,7 @@ public enum PumpkinState
 public class PumpkinPlaceController : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject pumpkin;
+    [SerializeField] private GameObject seed;
     [SerializeField] private float targetScale = 1f;
     [SerializeField] private float waterUsagePerSecond = 1f;
     [SerializeField] private float maxWaterFill = 100f;
@@ -85,11 +86,11 @@ public class PumpkinPlaceController : MonoBehaviour, IInteractable
             switch (state)
             {
                 case PumpkinState.Empty:
-                    if (farmer.CurrentItem == PickUpType.None)
+                    if (farmer.CurrentItem == PickUpType.Seed)
                         seedTooltip.ShowTooltip();
                     break;
                 case PumpkinState.Growing:
-                    if (currentWaterFill <= 0f && farmer.CurrentItem == PickUpType.None)
+                    if (currentWaterFill <= 0f && farmer.CurrentItem == PickUpType.Water)
                         waterTooltip.ShowTooltip();
                     break;
                 case PumpkinState.Ready:
@@ -113,15 +114,17 @@ public class PumpkinPlaceController : MonoBehaviour, IInteractable
 
     public void StartGrowing(Farmer farmer)
     {
-        if (farmer.CurrentItem == PickUpType.None)
+        if (farmer.CurrentItem == PickUpType.Seed)
         {
             state = PumpkinState.Growing;
+            seed.gameObject.SetActive(true);
+            farmer.ResetItem();
         }
     }
 
     public void StartWatering(Farmer farmer)
     {
-        if (currentWaterFill <= 0f && farmer.CurrentItem == PickUpType.None)
+        if (currentWaterFill <= 0f && farmer.CurrentItem == PickUpType.Water)
         {
             currentWaterFill = maxWaterFill;
         }
@@ -132,6 +135,7 @@ public class PumpkinPlaceController : MonoBehaviour, IInteractable
         if (farmer.PickUpItem(PickUpType.Pumpkin))
         {
             state = PumpkinState.Empty;
+            seed.gameObject.SetActive(false);
             currentGrow = 0f;
             currentWaterFill = 0f;
             UpdatePumpkinScale();

@@ -26,6 +26,7 @@ public class Farmer : Controllable
     [SerializeField] int money = 0;
     [SerializeField] TMP_Text moneyText;
     [SerializeField] private Transform interactPoint;
+    [SerializeField] private Vector3 interactBoxSize;
     [SerializeField] private float interactRadius = 1f;
     [SerializeField] private GameObject pumpkin;
     [SerializeField] private GameObject pumpkinPrefab;
@@ -33,7 +34,7 @@ public class Farmer : Controllable
     [SerializeField] private GameObject seedPrefab;
     [SerializeField] private GameObject water;
     [SerializeField] private GameObject waterPrefab;
-    private PickUpType currentItem = PickUpType.None;
+    [SerializeField] private PickUpType currentItem = PickUpType.None;
     public PickUpType CurrentItem { get { return currentItem; } }
     private IInteractable interactableInReach;
 
@@ -65,7 +66,8 @@ public class Farmer : Controllable
 
     public void UpdateInteractableInReach()
     {
-        RaycastHit[] hits = Physics.SphereCastAll(interactPoint.position, interactRadius, Vector3.up, 0f);
+        // RaycastHit[] hits = Physics.SphereCastAll(interactPoint.position, interactRadius, Vector3.up, 0f);
+        RaycastHit[] hits = Physics.BoxCastAll(interactPoint.position, interactBoxSize, Vector3.up, Quaternion.identity, 0f);
 
         foreach (RaycastHit hit in hits)
         {
@@ -101,6 +103,12 @@ public class Farmer : Controllable
                 case PickUpType.Pumpkin:
                     pumpkin.SetActive(true);
                     break;
+                case PickUpType.Seed:
+                    seed.SetActive(true);
+                    break;
+                case PickUpType.Water:
+                    water.SetActive(true);
+                    break;
             }
 
             return true;
@@ -118,13 +126,22 @@ public class Farmer : Controllable
     {
         if (CurrentItem != PickUpType.None)
         {
+
             switch (currentItem)
             {
                 case PickUpType.Pumpkin:
-                    ResetPumpkin();
                     Instantiate(pumpkinPrefab, pumpkin.transform.position, Quaternion.identity);
                     break;
+                case PickUpType.Seed:
+                    Instantiate(seedPrefab, seed.transform.position, Quaternion.identity);
+                    break;
+                case PickUpType.Water:
+                    print("water");
+                    Instantiate(waterPrefab, water.transform.position, Quaternion.identity);
+                    break;
             }
+
+            ResetItem();
 
             return true;
         }
@@ -134,7 +151,7 @@ public class Farmer : Controllable
 
     public void DeliverPumpkin()
     {
-        ResetPumpkin();
+        ResetItem();
     }
 
     public void AddMoney(int amount)
@@ -162,16 +179,19 @@ public class Farmer : Controllable
         moneyText.text = money.ToString();
     }
 
-    public void ResetPumpkin()
+    public void ResetItem()
     {
         currentItem = PickUpType.None;
         animator.SetBool("HasItem", false);
         pumpkin.SetActive(false);
+        seed.SetActive(false);
+        water.SetActive(false);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(interactPoint.position, interactRadius);
+        // Gizmos.DrawWireSphere(interactPoint.position, interactRadius);
+        Gizmos.DrawWireCube(interactPoint.position, interactBoxSize);
     }
 }

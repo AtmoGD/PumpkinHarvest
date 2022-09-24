@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour, IInteractable
 {
+    [SerializeField] private TooltipController itemTooltipController;
     [SerializeField] private PickUpType type;
     public void BaseInteract(Farmer farmer)
     {
@@ -16,6 +17,9 @@ public class Item : MonoBehaviour, IInteractable
 
     public void ShowInteractTooltip(Farmer farmer, bool show)
     {
-
+        if (show && farmer.CurrentItem == PickUpType.None)
+            itemTooltipController?.ShowTooltip();
+        else
+            itemTooltipController?.HideTooltip();
     }
 }

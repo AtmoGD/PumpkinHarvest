@@ -12,15 +12,46 @@ PrefabInstance:
       propertyPath: type
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 220914634972016875, guid: 5a7e7b94630ce7f4e9db82b96d7e83bc,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 10d80a9fd533b1b48996901836cf19d9,
+        type: 3}
+    - target: {fileID: 2000706739964421635, guid: 5a7e7b94630ce7f4e9db82b96d7e83bc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4840311938656509332, guid: 5a7e7b94630ce7f4e9db82b96d7e83bc,
         type: 3}
       propertyPath: m_Name
       value: Seed
       objectReference: {fileID: 0}
+    - target: {fileID: 5161883883311580960, guid: 5a7e7b94630ce7f4e9db82b96d7e83bc,
+        type: 3}
+      propertyPath: m_Name
+      value: TooltipSeed
+      objectReference: {fileID: 0}
     - target: {fileID: 5217401187556673326, guid: 5a7e7b94630ce7f4e9db82b96d7e83bc,
         type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5217401187556673326, guid: 5a7e7b94630ce7f4e9db82b96d7e83bc,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5217401187556673326, guid: 5a7e7b94630ce7f4e9db82b96d7e83bc,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5217401187556673326, guid: 5a7e7b94630ce7f4e9db82b96d7e83bc,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5217401187556673326, guid: 5a7e7b94630ce7f4e9db82b96d7e83bc,
         type: 3}
@@ -72,6 +103,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5757976828885291482, guid: 5a7e7b94630ce7f4e9db82b96d7e83bc,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757976828885291482, guid: 5a7e7b94630ce7f4e9db82b96d7e83bc,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757976828885291482, guid: 5a7e7b94630ce7f4e9db82b96d7e83bc,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759355988368498887, guid: 5a7e7b94630ce7f4e9db82b96d7e83bc,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -2698354145249690697, guid: 1f343062aafdf7b42b3023561cf95af1,
+        type: 3}
     - target: {fileID: 6353666892407487553, guid: 5a7e7b94630ce7f4e9db82b96d7e83bc,
         type: 3}
       propertyPath: m_Materials.Array.size

@@ -32,11 +32,12 @@ public class Truck : Controllable
     public void FarmerExit(Farmer farmerEntered)
     {
         farmer.transform.position = farmerExitPoint.position;
+        farmer.gameObject.SetActive(true);
         farmer.ResetVelocity();
         farmer.UpdateAnimator();
-        farmer.gameObject.SetActive(true);
 
         playerController.SetCurrentControllable(farmer);
+
         farmer = null;
     }
 
