@@ -120,7 +120,7 @@ MonoBehaviour:
   waterPrefab: {fileID: 3151176835552819358, guid: c8a820c675d1c2445a28fece45006ec3,
     type: 3}
   wateringTime: 3
-  harvestingTime: 1
+  harvestingTime: 0.5
   currentItem: 0
 --- !u!95 &6416117235714083002
 Animator:
