@@ -424,6 +424,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 0aa6dd14c661c4b4caa78f4b9900b386,
         type: 3}
+    - target: {fileID: 1892645351696070144, guid: 855a62c3382d08643ba74c629ebda282,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4839828855950248985, guid: 855a62c3382d08643ba74c629ebda282,
         type: 3}
       propertyPath: m_IsActive
@@ -433,6 +438,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TooltipIsGrowing
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908045527293807633, guid: 855a62c3382d08643ba74c629ebda282,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908045527293807633, guid: 855a62c3382d08643ba74c629ebda282,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 855a62c3382d08643ba74c629ebda282, type: 3}
