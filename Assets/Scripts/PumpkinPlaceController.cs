@@ -21,6 +21,7 @@ public class PumpkinPlaceController : MonoBehaviour, IInteractable
     [SerializeField] private TooltipController seedTooltip;
     [SerializeField] private TooltipController waterTooltip;
     [SerializeField] private TooltipController harvestTooltip;
+    [SerializeField] private TooltipController isGrowingTooltip;
 
     [SerializeField] private PumpkinState state = PumpkinState.Empty;
     [SerializeField] private float currentWaterFill = 0f;
@@ -45,7 +46,10 @@ public class PumpkinPlaceController : MonoBehaviour, IInteractable
                 UpdatePumpkinScale();
 
                 if (currentGrow >= waterNeededToGrow)
+                {
                     state = PumpkinState.Ready;
+                    isGrowingTooltip.HideTooltip();
+                }
             }
             else
             {
@@ -119,6 +123,7 @@ public class PumpkinPlaceController : MonoBehaviour, IInteractable
             state = PumpkinState.Growing;
             seed.gameObject.SetActive(true);
             farmer.ResetItem();
+            farmer.StartSeeding();
         }
     }
 
@@ -127,6 +132,8 @@ public class PumpkinPlaceController : MonoBehaviour, IInteractable
         if (currentWaterFill <= 0f && farmer.CurrentItem == PickUpType.Water)
         {
             currentWaterFill = maxWaterFill;
+            farmer.StartWatering();
+            isGrowingTooltip.ShowTooltip();
         }
     }
 
@@ -139,6 +146,7 @@ public class PumpkinPlaceController : MonoBehaviour, IInteractable
             currentGrow = 0f;
             currentWaterFill = 0f;
             UpdatePumpkinScale();
+            farmer.StartHarvesting();
         }
     }
 }

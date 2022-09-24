@@ -26,17 +26,24 @@ public class Farmer : Controllable
     [SerializeField] int money = 0;
     [SerializeField] TMP_Text moneyText;
     [SerializeField] private Transform interactPoint;
+    [SerializeField] private Transform dropPosition;
     [SerializeField] private Vector3 interactBoxSize;
     [SerializeField] private float interactRadius = 1f;
     [SerializeField] private GameObject pumpkin;
     [SerializeField] private GameObject pumpkinPrefab;
     [SerializeField] private GameObject seed;
     [SerializeField] private GameObject seedPrefab;
+    [SerializeField] private float seedingTime;
     [SerializeField] private GameObject water;
     [SerializeField] private GameObject waterPrefab;
+    [SerializeField] private float wateringTime;
+    [SerializeField] private float harvestingTime;
     [SerializeField] private PickUpType currentItem = PickUpType.None;
     public PickUpType CurrentItem { get { return currentItem; } }
     private IInteractable interactableInReach;
+    private float isSeedingTimer = 0f;
+    private float isWateringTimer = 0f;
+    private float isHarvestingTimer = 0f;
 
     protected override void Start()
     {
@@ -49,11 +56,81 @@ public class Farmer : Controllable
     {
         base.Update();
 
+        if (isSeedingTimer > 0f)
+        {
+            isSeedingTimer -= Time.deltaTime;
+            if (isSeedingTimer <= 0f)
+                EndSeeding();
+        }
+
+        if (isWateringTimer > 0f)
+        {
+            isWateringTimer -= Time.deltaTime;
+            if (isWateringTimer <= 0f)
+                EndWatering();
+        }
+
+        if (isHarvestingTimer > 0f)
+        {
+            isHarvestingTimer -= Time.deltaTime;
+            if (isHarvestingTimer <= 0f)
+                EndHarvesting();
+        }
+
         UpdateInteractableInReach();
+    }
+
+    public void StartSeeding()
+    {
+        animator.SetTrigger("IsWorking");
+        isSeedingTimer = seedingTime;
+    }
+
+    public void EndSeeding()
+    {
+        animator.SetTrigger("StopWorking");
+        isSeedingTimer = 0f;
+    }
+
+    public void StartWatering()
+    {
+        animator.SetTrigger("IsWatering");
+        isWateringTimer = wateringTime;
+    }
+
+    public void EndWatering()
+    {
+        animator.SetTrigger("StopWatering");
+        isWateringTimer = 0f;
+    }
+
+    public void StartHarvesting()
+    {
+        animator.SetTrigger("IsWorking");
+        isHarvestingTimer = harvestingTime;
+    }
+
+    public void EndHarvesting()
+    {
+        animator.SetTrigger("StopWorking");
+        isHarvestingTimer = 0f;
+    }
+
+    protected override bool CanInteract()
+    {
+        bool canInteract = true;
+
+        if (isSeedingTimer > 0f || isWateringTimer > 0f || isHarvestingTimer > 0f)
+            canInteract = false;
+
+        return canInteract;
     }
 
     public override void OnBaseInteract()
     {
+        if (!CanInteract())
+            return;
+
         if (interactableInReach != null)
         {
             interactableInReach.BaseInteract(this);
@@ -66,8 +143,8 @@ public class Farmer : Controllable
 
     public void UpdateInteractableInReach()
     {
-        // RaycastHit[] hits = Physics.SphereCastAll(interactPoint.position, interactRadius, Vector3.up, 0f);
-        RaycastHit[] hits = Physics.BoxCastAll(interactPoint.position, interactBoxSize, Vector3.up, Quaternion.identity, 0f);
+        RaycastHit[] hits = Physics.SphereCastAll(interactPoint.position, interactRadius, Vector3.up, 0f);
+        // RaycastHit[] hits = Physics.BoxCastAll(interactPoint.position, interactBoxSize, Vector3.up, Quaternion.identity, 0f);
 
         foreach (RaycastHit hit in hits)
         {
@@ -130,14 +207,13 @@ public class Farmer : Controllable
             switch (currentItem)
             {
                 case PickUpType.Pumpkin:
-                    Instantiate(pumpkinPrefab, pumpkin.transform.position, Quaternion.identity);
+                    Instantiate(pumpkinPrefab, dropPosition.position, Quaternion.identity);
                     break;
                 case PickUpType.Seed:
-                    Instantiate(seedPrefab, seed.transform.position, Quaternion.identity);
+                    Instantiate(seedPrefab, dropPosition.position, Quaternion.identity);
                     break;
                 case PickUpType.Water:
-                    print("water");
-                    Instantiate(waterPrefab, water.transform.position, Quaternion.identity);
+                    Instantiate(waterPrefab, dropPosition.position, Quaternion.identity);
                     break;
             }
 
@@ -191,7 +267,7 @@ public class Farmer : Controllable
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        // Gizmos.DrawWireSphere(interactPoint.position, interactRadius);
-        Gizmos.DrawWireCube(interactPoint.position, interactBoxSize);
+        Gizmos.DrawWireSphere(interactPoint.position, interactRadius);
+        // Gizmos.DrawWireCube(interactPoint.position, interactBoxSize);
     }
 }

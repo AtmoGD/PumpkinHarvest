@@ -39,7 +39,8 @@ public class Controllable : MonoBehaviour
 
     public virtual void OnMove(Vector2 movementVector)
     {
-        this.targetVelocity = new Vector3(movementVector.x, 0, movementVector.y);
+        if (CanInteract())
+            this.targetVelocity = new Vector3(movementVector.x, 0, movementVector.y);
     }
 
     protected void UpdateVelocity()
@@ -70,6 +71,11 @@ public class Controllable : MonoBehaviour
     protected void Move()
     {
         characterController.Move(velocity * maxSpeed * Time.deltaTime);
+    }
+
+    protected virtual bool CanInteract()
+    {
+        return true;
     }
 
     public virtual void OnBaseInteract()

@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &891098821489881113
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4208385913184674961}
+  m_Layer: 0
+  m_Name: DropPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4208385913184674961
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891098821489881113}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.0000005215406}
+  m_LocalPosition: {x: 0.213, y: 0.227, z: 0.269}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1174863038927102568}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1174863038927102571
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,6 +65,7 @@ Transform:
   - {fileID: 1713420408950609375}
   - {fileID: 8753339976508142904}
   - {fileID: 7928164400020406422}
+  - {fileID: 4208385913184674961}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -74,6 +106,7 @@ MonoBehaviour:
   money: 150
   moneyText: {fileID: 0}
   interactPoint: {fileID: 8753339976508142904}
+  dropPosition: {fileID: 4208385913184674961}
   interactBoxSize: {x: 0.2, y: 0.3, z: 0.38}
   interactRadius: 0.15
   pumpkin: {fileID: 5771255695340160849}
@@ -82,9 +115,12 @@ MonoBehaviour:
   seed: {fileID: 4547662027797883270}
   seedPrefab: {fileID: 5908761638890697362, guid: 5936b1c9ab4273a48994a7c2230be228,
     type: 3}
+  seedingTime: 2
   water: {fileID: 8619128920394611076}
   waterPrefab: {fileID: 3151176835552819358, guid: c8a820c675d1c2445a28fece45006ec3,
     type: 3}
+  wateringTime: 3
+  harvestingTime: 1
   currentItem: 0
 --- !u!95 &6416117235714083002
 Animator:
