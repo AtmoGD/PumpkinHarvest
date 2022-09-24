@@ -16,26 +16,11 @@ public class CarDoorController : MonoBehaviour, IInteractable
         truck.FarmerEnter(farmer);
     }
 
-    public void ShowBaseInteractTooltip(Farmer farmer, bool show)
+    public void ShowInteractTooltip(Farmer farmer, bool show)
     {
         if (show)
-        {
             carTooltipController?.ShowTooltip();
-        }
         else
-        {
             carTooltipController?.HideTooltip();
-        }
     }
-
-    public void SpecialInteract(Farmer farmer)
-    {
-        // throw new System.NotImplementedException();
-    }
-
-    public void ShowSpecialInteractTooltip(Farmer farmer, bool show)
-    {
-        // throw new System.NotImplementedException();
-    }
-
 }

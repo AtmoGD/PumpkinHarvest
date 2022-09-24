@@ -81,7 +81,6 @@ public class GameController : MonoBehaviour
 
     public void StartRandomCustomer()
     {
-        // int randomCustomer = UnityEngine.Random.Range(0, InActiveCustomers.Count);
         CustomerData data = customerData[UnityEngine.Random.Range(0, customerData.Count)];
         InActiveCustomers[UnityEngine.Random.Range(0, InActiveCustomers.Count)].BecomeActive(data.amountOfPumpkins, data.amountOfMoney);
     }
@@ -89,9 +88,7 @@ public class GameController : MonoBehaviour
     public void CustomerFinished(CustomerController customer)
     {
         if (ActiveCustomerCount < minCustomersActive)
-        {
             StartRandomCustomer();
-        }
     }
 
 }

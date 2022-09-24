@@ -34,14 +34,12 @@ public class CustomerController : MonoBehaviour, IInteractable
         animator.SetBool("Active", true);
         UpdatePumpkinsLeftText();
         UpdateMoneyRewardText();
-        // tooltipController.ShowTooltip();
     }
 
     public void BecomeInactive()
     {
         isActive = false;
         animator.SetBool("Active", false);
-        // tooltipController.HideTooltip();
     }
 
     public void BaseInteract(Farmer farmer)
@@ -65,33 +63,20 @@ public class CustomerController : MonoBehaviour, IInteractable
         UpdatePumpkinsLeftText();
     }
 
-    public void ShowBaseInteractTooltip(Farmer farmer, bool show)
+    public void ShowInteractTooltip(Farmer farmer, bool show)
     {
         if (show)
-        {
             tooltipController?.ShowTooltip();
-        }
         else
-        {
             tooltipController?.HideTooltip();
-        }
-    }
-
-    public void SpecialInteract(Farmer farmer)
-    {
-    }
-
-    public void ShowSpecialInteractTooltip(Farmer farmer, bool show)
-    {
     }
 
     public void UpdateCustomerMaterial()
     {
         Material newMaterial = customerMaterials[Random.Range(0, customerMaterials.Count)];
+
         foreach (SkinnedMeshRenderer meshRenderer in customerModel)
-        {
             meshRenderer.material = newMaterial;
-        }
     }
 
     public void UpdatePumpkinsLeftText()

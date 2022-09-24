@@ -17,38 +17,20 @@ public class TrunkController : MonoBehaviour, IInteractable
         if (farmer.CurrentItem == PickUpType.Pumpkin)
         {
             if (truck.AddToTrunk())
-            {
                 farmer.DeliverPumpkin();
-            }
         }
         else if (farmer.CurrentItem == PickUpType.None)
         {
             if (truck.RemoveFromTrunk())
-            {
                 farmer.PickUpItem(PickUpType.Pumpkin);
-            }
         }
     }
 
-    public void ShowBaseInteractTooltip(Farmer farmer, bool show)
+    public void ShowInteractTooltip(Farmer farmer, bool show)
     {
         if (show && farmer.CurrentItem == PickUpType.Pumpkin && !truck.IsFull)
-        {
             trunkTooltipController?.ShowTooltip();
-        }
         else
-        {
             trunkTooltipController?.HideTooltip();
-        }
-    }
-
-    public void SpecialInteract(Farmer farmer)
-    {
-        // throw new System.NotImplementedException();
-    }
-
-    public void ShowSpecialInteractTooltip(Farmer farmer, bool show)
-    {
-        // throw new System.NotImplementedException();
     }
 }

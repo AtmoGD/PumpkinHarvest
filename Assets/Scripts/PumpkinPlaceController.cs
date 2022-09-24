@@ -78,7 +78,7 @@ public class PumpkinPlaceController : MonoBehaviour, IInteractable
         HideAllTooltips();
     }
 
-    public void ShowBaseInteractTooltip(Farmer farmer, bool show)
+    public void ShowInteractTooltip(Farmer farmer, bool show)
     {
         if (show)
         {
@@ -109,16 +109,6 @@ public class PumpkinPlaceController : MonoBehaviour, IInteractable
         seedTooltip.HideTooltip();
         waterTooltip.HideTooltip();
         harvestTooltip.HideTooltip();
-    }
-
-    public void SpecialInteract(Farmer farmer)
-    {
-
-    }
-
-    public void ShowSpecialInteractTooltip(Farmer farmer, bool show)
-    {
-
     }
 
     public void StartGrowing(Farmer farmer)

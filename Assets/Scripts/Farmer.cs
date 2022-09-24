@@ -29,6 +29,10 @@ public class Farmer : Controllable
     [SerializeField] private float interactRadius = 1f;
     [SerializeField] private GameObject pumpkin;
     [SerializeField] private GameObject pumpkinPrefab;
+    [SerializeField] private GameObject seed;
+    [SerializeField] private GameObject seedPrefab;
+    [SerializeField] private GameObject water;
+    [SerializeField] private GameObject waterPrefab;
     private PickUpType currentItem = PickUpType.None;
     public PickUpType CurrentItem { get { return currentItem; } }
     private IInteractable interactableInReach;
@@ -36,13 +40,14 @@ public class Farmer : Controllable
     protected override void Start()
     {
         base.Start();
+
         UpdateMoneyText();
     }
-
 
     protected new void Update()
     {
         base.Update();
+
         UpdateInteractableInReach();
     }
 
@@ -69,18 +74,18 @@ public class Farmer : Controllable
             {
                 ResetInteractableInReach();
                 interactableInReach = interactable;
-                interactableInReach.ShowBaseInteractTooltip(this, true);
+                interactableInReach.ShowInteractTooltip(this, true);
                 return;
             }
         }
 
-        interactableInReach?.ShowBaseInteractTooltip(this, false);
+        interactableInReach?.ShowInteractTooltip(this, false);
         interactableInReach = null;
     }
 
     public void ResetInteractableInReach()
     {
-        interactableInReach?.ShowBaseInteractTooltip(this, false);
+        interactableInReach?.ShowInteractTooltip(this, false);
         interactableInReach = null;
     }
 
