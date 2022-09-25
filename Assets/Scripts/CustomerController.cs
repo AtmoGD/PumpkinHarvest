@@ -23,6 +23,9 @@ public class CustomerController : MonoBehaviour, IInteractable
         GameController.instance.InitCustomer(this);
         amountPumpkinsLeft = amountOfPumpkins;
         UpdateCustomerMaterial();
+
+        if (isActive)
+            BecomeActive(amountOfPumpkins, moneyReward);
     }
 
     public void BecomeActive(int pumpkinAmount, int reward)

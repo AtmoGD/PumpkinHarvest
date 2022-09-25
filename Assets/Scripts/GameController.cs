@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private List<CustomerData> customerData = new List<CustomerData>();
     public int ActiveCustomerCount { get { return customers.FindAll(c => c.IsActive).Count; } }
     public List<CustomerController> InActiveCustomers { get { return customers.FindAll(c => !c.IsActive); } }
+    public bool IsGameRunning { get; private set; }
 
     private void Awake()
     {
@@ -35,6 +36,8 @@ public class GameController : MonoBehaviour
         }
 
         instance = this;
+
+        IsGameRunning = false;
     }
 
     private void Start()
@@ -45,6 +48,8 @@ public class GameController : MonoBehaviour
 
     public void StartGame()
     {
+        IsGameRunning = true;
+
         menuCamera.SetActive(false);
         gameCamera.SetActive(true);
 

@@ -29,19 +29,19 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (currentControllable)
+        if (currentControllable && GameController.instance.IsGameRunning)
             currentControllable.OnMove(context.ReadValue<Vector2>());
     }
 
     public void OnBaseInteract(InputAction.CallbackContext context)
     {
-        if (context.started && currentControllable)
+        if (context.started && currentControllable && GameController.instance.IsGameRunning)
             currentControllable.OnBaseInteract();
     }
 
     public void OnSpecialInteract(InputAction.CallbackContext context)
     {
-        if (context.started && currentControllable)
+        if (context.started && currentControllable && GameController.instance.IsGameRunning)
             currentControllable.OnSpecialInteract();
     }
 }
