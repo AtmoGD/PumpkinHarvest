@@ -13,6 +13,8 @@ public class CustomerData
 public class GameController : MonoBehaviour
 {
     public static GameController instance;
+    [SerializeField] private GameObject menuCamera;
+    [SerializeField] private GameObject gameCamera;
     [SerializeField] private bool startOnLoad = false;
     [SerializeField] private float startGameDelay = 2f;
     [SerializeField] private float gameLoopTime = 1f;
@@ -43,6 +45,9 @@ public class GameController : MonoBehaviour
 
     public void StartGame()
     {
+        menuCamera.SetActive(false);
+        gameCamera.SetActive(true);
+
         int amountOfCustomers = UnityEngine.Random.Range(minCustomersActive, maxCustomersActive + 1);
 
         for (int i = 0; i < amountOfCustomers; i++)
