@@ -120,7 +120,7 @@ MonoBehaviour:
   targetScale: 1
   waterUsagePerSecond: 1
   maxWaterFill: 500
-  waterNeededToGrow: 180
+  waterNeededToGrow: 210
   seedTooltip: {fileID: 6517640300079693710}
   waterTooltip: {fileID: 1157960654468116461}
   harvestTooltip: {fileID: 5832522776666585611}
