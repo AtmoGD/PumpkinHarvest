@@ -9,6 +9,7 @@ public class PurchaseController : MonoBehaviour, IInteractable
     [SerializeField] private int price;
     [SerializeField] public TMP_Text priceText;
     [SerializeField] private GameObject purchaseObject;
+    [SerializeField] private AudioSource purchaseSound;
     [SerializeField] private float destroyDelay = 1.5f;
 
     private void Start()
@@ -24,6 +25,7 @@ public class PurchaseController : MonoBehaviour, IInteractable
             purchasePanel.SetActive(false);
             tooltipController.HideTooltip();
             tooltipController = null;
+            purchaseSound.Play();
             Destroy(gameObject, destroyDelay);
         }
     }

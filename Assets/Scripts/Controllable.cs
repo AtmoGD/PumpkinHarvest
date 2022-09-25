@@ -12,6 +12,12 @@ public class Controllable : MonoBehaviour
     [SerializeField] protected float acceleration = 5f;
     [SerializeField] protected float decceleration = 5f;
     [SerializeField] protected float gravity = 9.81f;
+    [SerializeField] protected AudioSource idleAudioSource;
+    [SerializeField] protected AudioSource movingAudioSource;
+    [SerializeField] protected float changeVolumeSpeed = 5f;
+    private float idleTargetVolume = 1f;
+    private float movingTargetVolume = 0f;
+
     protected Vector3 velocity;
     protected Vector3 targetVelocity;
 
@@ -19,12 +25,25 @@ public class Controllable : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
+
+        if (idleAudioSource)
+        {
+            idleTargetVolume = idleAudioSource.volume;
+            idleAudioSource.volume = 0f;
+        }
+
+        if (movingAudioSource)
+        {
+            movingTargetVolume = movingAudioSource.volume;
+            movingAudioSource.volume = 0f;
+        }
     }
 
     protected void Update()
     {
         UpdateVelocity();
         Rotate();
+        UpdateSounds();
     }
 
     protected void FixedUpdate()
@@ -54,6 +73,26 @@ public class Controllable : MonoBehaviour
             velocity.y -= gravity * Time.deltaTime;
 
         animator.SetFloat("Speed", new Vector2(velocity.x, velocity.z).magnitude);
+    }
+
+    protected void UpdateSounds()
+    {
+        if (new Vector2(targetVelocity.x, targetVelocity.z).magnitude > 0.1f)
+        {
+            if (movingAudioSource)
+                movingAudioSource.volume = Mathf.Lerp(movingAudioSource.volume, movingTargetVolume, Time.deltaTime * changeVolumeSpeed);
+
+            if (idleAudioSource)
+                idleAudioSource.volume = Mathf.Lerp(idleAudioSource.volume, 0, Time.deltaTime * changeVolumeSpeed);
+        }
+        else
+        {
+            if (movingAudioSource)
+                movingAudioSource.volume = Mathf.Lerp(movingAudioSource.volume, 0, Time.deltaTime * changeVolumeSpeed);
+
+            if (idleAudioSource)
+                idleAudioSource.volume = Mathf.Lerp(idleAudioSource.volume, idleTargetVolume, Time.deltaTime * changeVolumeSpeed);
+        }
     }
 
     public void ResetVelocity()

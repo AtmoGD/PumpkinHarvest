@@ -8,6 +8,8 @@ public class Truck : Controllable
     [SerializeField] private TrunkController trunk;
     [SerializeField] private Transform farmerExitPoint;
     [SerializeField] private List<GameObject> pumpkins = new List<GameObject>();
+    [SerializeField] private AudioSource farmerEnter;
+    [SerializeField] private AudioSource farmerExit;
     [SerializeField] private float velocityThreshold = 0.2f;
     private int currentTrunkSize = 0;
     public bool IsFull { get { return currentTrunkSize >= pumpkins.Count; } }
@@ -27,6 +29,9 @@ public class Truck : Controllable
         farmer.ResetInteractableInReach();
         farmer.gameObject.SetActive(false);
         playerController.SetCurrentControllable(this);
+        idleAudioSource.Play();
+        movingAudioSource.Play();
+        farmerEnter.Play();
     }
 
     public void FarmerExit(Farmer farmerEntered)
@@ -35,6 +40,9 @@ public class Truck : Controllable
         farmer.gameObject.SetActive(true);
         farmer.ResetVelocity();
         farmer.UpdateAnimator();
+        idleAudioSource.Stop();
+        movingAudioSource.Stop();
+        farmerExit.Play();
 
         playerController.SetCurrentControllable(farmer);
 

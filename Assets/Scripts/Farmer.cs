@@ -39,6 +39,15 @@ public class Farmer : Controllable
     [SerializeField] private float wateringTime;
     [SerializeField] private float harvestingTime;
     [SerializeField] private PickUpType currentItem = PickUpType.None;
+    [SerializeField] private AudioSource pickUpWaterSound;
+    [SerializeField] private AudioSource pickUpSeedSound;
+    [SerializeField] private AudioSource pickUpPumpkinSound;
+    [SerializeField] private AudioSource dropWaterSound;
+    [SerializeField] private AudioSource dropSeedSound;
+    [SerializeField] private AudioSource dropPumpkinSound;
+    [SerializeField] private AudioSource harvestSound;
+    [SerializeField] private AudioSource waterSound;
+    [SerializeField] private AudioSource seedSound;
     public PickUpType CurrentItem { get { return currentItem; } }
     private IInteractable interactableInReach;
     private float isSeedingTimer = 0f;
@@ -84,36 +93,42 @@ public class Farmer : Controllable
     {
         animator.SetTrigger("IsWorking");
         isSeedingTimer = seedingTime;
+        seedSound.Play();
     }
 
     public void EndSeeding()
     {
         animator.SetTrigger("StopWorking");
         isSeedingTimer = 0f;
+        seedSound.Stop();
     }
 
     public void StartWatering()
     {
         animator.SetTrigger("IsWatering");
         isWateringTimer = wateringTime;
+        waterSound.Play();
     }
 
     public void EndWatering()
     {
         animator.SetTrigger("StopWatering");
         isWateringTimer = 0f;
+        waterSound.Stop();
     }
 
     public void StartHarvesting()
     {
         animator.SetTrigger("IsWorking");
         isHarvestingTimer = harvestingTime;
+        harvestSound.Play();
     }
 
     public void EndHarvesting()
     {
         animator.SetTrigger("StopWorking");
         isHarvestingTimer = 0f;
+        harvestSound.Stop();
     }
 
     protected override bool CanInteract()
@@ -179,12 +194,15 @@ public class Farmer : Controllable
             {
                 case PickUpType.Pumpkin:
                     pumpkin.SetActive(true);
+                    pickUpPumpkinSound.Play();
                     break;
                 case PickUpType.Seed:
                     seed.SetActive(true);
+                    pickUpSeedSound.Play();
                     break;
                 case PickUpType.Water:
                     water.SetActive(true);
+                    pickUpWaterSound.Play();
                     break;
             }
 
@@ -208,12 +226,15 @@ public class Farmer : Controllable
             {
                 case PickUpType.Pumpkin:
                     Instantiate(pumpkinPrefab, dropPosition.position, Quaternion.identity);
+                    dropPumpkinSound.Play();
                     break;
                 case PickUpType.Seed:
                     Instantiate(seedPrefab, dropPosition.position, Quaternion.identity);
+                    dropSeedSound.Play();
                     break;
                 case PickUpType.Water:
                     Instantiate(waterPrefab, dropPosition.position, Quaternion.identity);
+                    dropWaterSound.Play();
                     break;
             }
 
@@ -228,6 +249,7 @@ public class Farmer : Controllable
     public void DeliverPumpkin()
     {
         ResetItem();
+        dropPumpkinSound.Play();
     }
 
     public void AddMoney(int amount)

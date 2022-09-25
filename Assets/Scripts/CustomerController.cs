@@ -12,6 +12,7 @@ public class CustomerController : MonoBehaviour, IInteractable
     [SerializeField] private TMP_Text moneyRewardText;
     [SerializeField] private Animator animator;
     [SerializeField] private bool isActive;
+    [SerializeField] private AudioSource customerPaidSound;
     public bool IsActive { get { return isActive; } }
     [SerializeField] private int amountOfPumpkins;
     [SerializeField] private int moneyReward;
@@ -54,6 +55,7 @@ public class CustomerController : MonoBehaviour, IInteractable
             if (amountPumpkinsLeft <= 0)
             {
                 farmer.AddMoney(moneyReward);
+                customerPaidSound.Play();
                 BecomeInactive();
             }
         }
