@@ -1337,7 +1337,7 @@ MonoBehaviour:
   menuCamera: {fileID: 724469638}
   gameCamera: {fileID: 1004418622}
   startOnLoad: 1
-  startGameDelay: 4
+  startGameDelay: 6
   gameLoopTime: 1
   chanceForNewCustomer: 0.05
   minCustomersActive: 2
@@ -7153,6 +7153,7 @@ GameObject:
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
   - component: {fileID: 330585549}
+  - component: {fileID: 330585550}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7308,7 +7309,103 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 71fe3cdee3073a045bde1c48abcf7765, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.739
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &330585550
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f8f9556b09c95a544bfa22afa313a958, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.198
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -22140,7 +22237,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1004418622}
-  m_LocalRotation: {x: 0.44721362, y: 0.000000058018024, z: -0.000000029009012, w: 0.89442724}
+  m_LocalRotation: {x: 0.44721362, y: 0.000000058018028, z: -0.000000029009012, w: 0.89442724}
   m_LocalPosition: {x: -5.17, y: 4.255, z: 0.16700006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -46323,43 +46420,43 @@ PrefabInstance:
       objectReference: {fileID: 440933919}
     - target: {fileID: 764008286, guid: 797361468fb5fe04e83696a46f6309c8, type: 3}
       propertyPath: m_Volume
-      value: 0.6
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 764008287, guid: 797361468fb5fe04e83696a46f6309c8, type: 3}
       propertyPath: m_Volume
-      value: 0.6
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 764008288, guid: 797361468fb5fe04e83696a46f6309c8, type: 3}
       propertyPath: m_Volume
-      value: 0.6
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 764008289, guid: 797361468fb5fe04e83696a46f6309c8, type: 3}
       propertyPath: m_Volume
-      value: 0.6
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 764008290, guid: 797361468fb5fe04e83696a46f6309c8, type: 3}
       propertyPath: m_Volume
-      value: 0.6
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 764008291, guid: 797361468fb5fe04e83696a46f6309c8, type: 3}
       propertyPath: m_Volume
-      value: 0.6
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 764008292, guid: 797361468fb5fe04e83696a46f6309c8, type: 3}
       propertyPath: m_Volume
-      value: 0.6
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 764008293, guid: 797361468fb5fe04e83696a46f6309c8, type: 3}
       propertyPath: m_Volume
-      value: 0.6
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 764008294, guid: 797361468fb5fe04e83696a46f6309c8, type: 3}
       propertyPath: m_Volume
-      value: 0.6
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 764008295, guid: 797361468fb5fe04e83696a46f6309c8, type: 3}
       propertyPath: m_Volume
-      value: 0.6
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1174863038927102568, guid: 797361468fb5fe04e83696a46f6309c8,
         type: 3}
@@ -53821,7 +53918,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 580334457, guid: 6ebfe017905ad214f884617f28bc7d8e, type: 3}
       propertyPath: m_Volume
-      value: 0.379
+      value: 0.236
       objectReference: {fileID: 0}
     - target: {fileID: 580334457, guid: 6ebfe017905ad214f884617f28bc7d8e, type: 3}
       propertyPath: OutputAudioMixerGroup
@@ -53830,7 +53927,7 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 580334458, guid: 6ebfe017905ad214f884617f28bc7d8e, type: 3}
       propertyPath: m_Volume
-      value: 0.38
+      value: 0.247
       objectReference: {fileID: 0}
     - target: {fileID: 580334458, guid: 6ebfe017905ad214f884617f28bc7d8e, type: 3}
       propertyPath: OutputAudioMixerGroup
@@ -53840,7 +53937,7 @@ PrefabInstance:
     - target: {fileID: 695005674552430271, guid: 6ebfe017905ad214f884617f28bc7d8e,
         type: 3}
       propertyPath: m_Volume
-      value: 0.71
+      value: 0.37
       objectReference: {fileID: 0}
     - target: {fileID: 695005674552430271, guid: 6ebfe017905ad214f884617f28bc7d8e,
         type: 3}
@@ -53911,7 +54008,7 @@ PrefabInstance:
     - target: {fileID: 4719949196112302265, guid: 6ebfe017905ad214f884617f28bc7d8e,
         type: 3}
       propertyPath: m_Volume
-      value: 0.719
+      value: 0.389
       objectReference: {fileID: 0}
     - target: {fileID: 4719949196112302265, guid: 6ebfe017905ad214f884617f28bc7d8e,
         type: 3}
